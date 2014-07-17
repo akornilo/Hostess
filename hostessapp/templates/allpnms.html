@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<table>
+{% for p in pnms %}
+	<tr>
+	<td> {{p.name}} </td>
+	<td> {{p.major}} </td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}

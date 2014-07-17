@@ -1,0 +1,17 @@
+<!doctype html>
+<title>AXOXOX</title>
+<div class=page>
+   <div class=metanav>
+  {% if not session.username %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <h2 style="color:red;"> {{messages[(messages|length)-1]}} </h2>
+    {% endif %}
+  {% endwith %}
+  </div>
+  {% block body %}{% endblock %}
+</div>
