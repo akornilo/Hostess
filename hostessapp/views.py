@@ -86,7 +86,7 @@ def pnm_form(party):
 
 		pnm = Pnm.query.filter_by(name=ans["name"]).first()
 
-		sis = current_user.name
+		sis = current_user.username
 
 		c = Comment(ans["comments"], ans["sisters"], pnm.id, current_user.id, sis)
 
