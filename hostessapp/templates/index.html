@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1 style="text-align:center;">WELCOME! Its night {{session.night}}. </h1>
+<h1 style="text-align:center;">WELCOME {{name}}! Its night {{session.night}}. </h1>
 {% if session.admin %}
 <h2>Admin Actions</h2>
 

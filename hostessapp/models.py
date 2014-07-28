@@ -27,9 +27,6 @@ class Sister(db.Model):
     def __repr__(self):
         return str(self.username)
 
-    def is_crib(self):
-        return self.is_crib
-
 class BumpGroup(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(10), unique=True)

@@ -21,8 +21,7 @@ def index():
 		Meta.query.first().night = night
 		db.session.commit()
 		session["night"] = Meta.query.first().night
-
-	return render_template('index.html')
+	return render_template('index.html', name=current_user.username)
 
 @app.route("/settings")
 @login_required
@@ -49,6 +48,8 @@ def login():
     login_user(registered_user, remember=remember_me)
     session["username"] = str(current_user)
     flash('Logged in successfully')
+    print registered_user.is_crib
+
     if registered_user.is_crib:
     	session["admin"] = True
 
@@ -60,6 +61,8 @@ def logout():
     logout_user()
     session.pop('username', None)
     session.pop('admin', None)
+    print session.get('admin', None)
+
     flash('Logged out successfully')
     return redirect(url_for('index'))
 
@@ -98,7 +101,9 @@ def pnm_form(party):
 		db.session.add(c)
 		db.session.commit()
 
-	all_pnms = filter(lambda x:x not in current_pnms, Pnm.query.all())
+	print current_pnms
+
+	all_pnms = filter(lambda x:x.name not in current_pnms, Pnm.query.all())
 
 	pnms = current_pnms + all_pnms
 	if "night" in session:
@@ -133,6 +138,8 @@ def my_pnms(party):
 				pnms.append(x.pnm)
 
 		current_pnms = pnms
+
+		print current_pnms
 
 		return render_template("mypnms.html", notfmr = False, pnms=pnms, party=party)
 
