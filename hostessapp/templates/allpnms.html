@@ -1,11 +1,20 @@
 {% extends "layout.html" %}
 {% block body %}
-<table>
+<table class="table">
+<thead>
+<tr>
+<th>PNM</th><th>Sister</th><th>Comments</th><th>Sisters to talk to</th>
+</tr>	
+</thead>
 {% for p in pnms %}
+	{% for c in p.comments %}
 	<tr>
 	<td> {{p.name}} </td>
-	<td> {{p.major}} </td>
+	<td> {{c.sister_name}} </td>
+	<td> {{c.text}} </td>
+	<td> {{c.sisters}}</td>
 	</tr>
+	{% endfor %}
 {% endfor %}
 </table>
 {% endblock %}

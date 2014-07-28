@@ -78,16 +78,18 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     sister = db.Column(db.Integer, db.ForeignKey('sister.id'))
+    sister_name = db.Column(db.String(30))
     pnm = db.Column(db.Integer, db.ForeignKey('pnm.id'))
     hidden = db.Column(db.Boolean, default=False)
     text = db.Column(db.String(2000))
     sisters = db.Column(db.String(500))
 
-    def __init__(self, comment, sisters, pnm, sister):
+    def __init__(self, comment, sisters, pnm, sister, name):
         self.text = comment
         self.pnm = pnm
         self.sister = sister
         self.sisters = sisters
+        self.sister_name = name
 
 
 class Meta(db.Model):

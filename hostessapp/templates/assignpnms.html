@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
-
-<div>
-Which night?
 <form action="" method=post>
- <select name=night onchange="this.form.submit()">
+<div class="form-inline">
+<label>Which night?</label>
+ <select name=night onchange="this.form.submit()" class="form-control">
 	<option value="1" {% if session.assign_night == 1 %}
 	selected {% endif %}>1</option>
 	<option value="2"{% if session.assign_night == 2 %}
@@ -15,24 +14,25 @@ Which night?
 </div>
 </form>
 <form action="" method=post class="form-horizontal" id="pnmpartyform">
-<div>
+<label>
 Assign PNMs to parties and bump group!
-</div>
+</label>
 {% for p in pnms %}
-	{{p[0]}} 
-	<select name={{p[0]}}+party>
+	<div class="form-inline"
+	<label>{{p[0]}} </label>
+	<select name={{p[0]}}+party class="form-control">
 	<option value=0 {% if p[1] == 0 %}selected {% endif %}>Not Attending</option>
 	{% for r in parties %}
 	<option value={{r}}{% if p[1] == r %} selected {% endif %}>{{r}}</option>
 	{% endfor %}
 	</select>
 
-	<select name={{p[0]}}+bump>
+	<select name={{p[0]}}+bump class="form-control">
 	{% for b in bumps %}
 	<option value={{b}} {% if p[2] == b %} selected {% endif %}>{{b}}</option>
 	{% endfor %}
 	</select>
-	<br>
+	</div>
 
 {% endfor %}
 		

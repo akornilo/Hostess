@@ -71,6 +71,7 @@ def show_pnm_profile(id):
 @app.route('/allpnms')
 @login_required
 def get_all_pnms():
+	Pnm.query.all()
 	return render_template('allpnms.html', pnms=Pnm.query.all())
 
 @app.route('/pnmform/<party>', methods=['GET', 'POST'])
@@ -85,7 +86,9 @@ def pnm_form(party):
 
 		pnm = Pnm.query.filter_by(name=ans["name"]).first()
 
-		c = Comment(ans["comments"], ans["sisters"], pnm.id, current_user.id)
+		sis = current_user.name
+
+		c = Comment(ans["comments"], ans["sisters"], pnm.id, current_user.id, sis)
 
 		# Add to sisters comments
 
@@ -98,9 +101,10 @@ def pnm_form(party):
 
 	pnms = current_pnms + all_pnms
 	if "night" in session:
-		last_round = (party == num_parties[session["night"]])
+		last_round = (int(party) == num_parties[session["night"]])
 	else:
-		last_round = (party == num_parties[Meta.query.first().night])
+		last_round = (int(party) == num_parties[Meta.query.first().night])
+
 	return render_template('pnmform.html', party=int(party), pnms=pnms, last_party=last_round)
 
 @app.route('/mypnms/<party>')
@@ -125,6 +129,7 @@ def my_pnms(party):
 
 		for x in bg.pnms:
 			if x.party == party and x.night==night:
+				p = x.pnm
 				pnms.append(x.pnm)
 
 		current_pnms = pnms

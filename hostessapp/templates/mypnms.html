@@ -4,18 +4,24 @@
 Oops, its not currently a night of fmr :(
 {% else %}
 	{% for p in pnms %}
-	<span>
-		<ul>
-			<li> {{p.name}} </li>
-			<li> {{p.hometown}} </li>
-			<li> {{p.major}} </li>
-			<li> {{p.interests}} </li>
-		</ul>
-	</span>
+	<div>
+		<ul class="list-group">
+		<li class="list-group-item top"><b>Name:</b> {{p.name}}</li>
+		<li class="list-group-item"><b>Hometown:</b> {{p.hometown}}</li>
+		<li class="list-group-item"><b>Major:</b> {{p.major}}</li>
+		<li class="list-group-item"><b>Interests:</b> {{p.interests}}</li>
+		<li class="list-group-item"><b>Comments:</b> 
+			<ul>
+			{% for c in p.comments %}
+			<li> {{c.text}} </li>
+			{% endfor %}
+			</ul>
+		</li>
+	</ul>
+	</div>
 	{% endfor %}
 <a href='/pnmform/{{party}}'>Review PNMS </a>
 
 {% endif %}
-
 
 {% endblock %}

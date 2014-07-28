@@ -18,7 +18,7 @@
           .appendTo( this.wrapper )
           .val( value )
           .attr( "title", "" )
-          .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+          .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left form-control" )
           .autocomplete({
             delay: 0,
             minLength: 0,
@@ -56,7 +56,7 @@
             text: false
           })
           .removeClass( "ui-corner-all" )
-          .addClass( "custom-combobox-toggle ui-corner-right" )
+          .addClass( "custom-combobox-toggle ui-corner-right form-control" )
           .mousedown(function() {
             wasOpen = input.autocomplete( "widget" ).is( ":visible" );
           })

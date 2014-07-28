@@ -3,32 +3,32 @@
 <script src="/static/pnmform.js"></script>
 
   <form action="" method=post class="form-horizontal" id="pnmform">
-    <h2>Review a PNM ;) </h2>
+    <h2>Review a PNM</h2>
 
           Name:
-          <div class="ui-widget">
-          <select form="pnmform" name="name" id="combobox" required>
+          <div class="ui-widget form-inline">
+          <select form="pnmform" name="name" id="combobox" clas="form-control" required>
           {% for p in pnms %}
           <option> {{p.name}} </option>
           {% endfor %}
           </select>
           </div>
 
-        Interests: <br>
-        <textarea rows="4" cols="50" name="interests" form="pnmform"></textarea><br>
-        General Comments: <br>
-        <textarea rows="4" cols="50" name="comments" form="pnmform"></textarea><br>
-        Sisters to talk to: <br>
-        <textarea rows="4" cols="50" name="sisters" form="pnmform"></textarea><br>
+        <label> Interests: </label>
+        <textarea rows="4" cols="50" name="interests" class="form-control" form="pnmform"></textarea><br>
+        <label> General Comments: </label>
+        <textarea rows="4" cols="50" name="comments" class="form-control" form="pnmform"></textarea><br>
+        <label>Sisters to talk to: </label>
+        <textarea rows="4" cols="50" name="sisters" class="form-control" form="pnmform"></textarea><br>
 
         <div class="controls">
-          <button type="submit" class="btn">Submit</button>
+          <button type="submit" class="btn btn-large btn-primary">Submit</button>
         </div>
   </form>
-  <a href='/mypnms/{{party}}'> See PNMs again </a> <br>
+  <a href='/mypnms/{{party}}' class=> See PNMs again </a> <br>
   {% if last_party %}
-  Hurrah you finished the night! <br>
-  <a href='/index'> Return Home </a>
+  Hurrah you finished the last part of the night night! <br>
+  <a href='/'> Return Home </a>
   {% else %}
   <a href='/mypnms/{{party+1}}'>See next party pnms </a> 
   {% endif %}
