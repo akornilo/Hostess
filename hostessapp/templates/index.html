@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <h1 style="text-align:center;">WELCOME! Its night {{session.night}}. </h1>
-
+{% if session.admin %}
 <h2>Admin Actions</h2>
 
 <form action="" method=post role="form" class="form-inline" id="pnmform">
@@ -20,7 +20,7 @@
 <div>
 <a href="/assignpnms"> Assign PNMs to Bump Groups </a>
 </div>
-
+{% endif %}
 <h2>Sister Actions</h2>	
 <div>
 <a href="/mypnms/1">Review PNMS!</a>

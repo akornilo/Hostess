@@ -40,8 +40,6 @@ def login():
 
     remember_me = False
 
-    print request.form.items()
-
     if 'remember' in request.form:
         remember_me = True
 
@@ -51,6 +49,9 @@ def login():
     login_user(registered_user, remember=remember_me)
     session["username"] = str(current_user)
     flash('Logged in successfully')
+    if registered_user.is_crib:
+    	session["admin"] = True
+
     return redirect(request.args.get('next') or url_for('index'))
 
 @app.route("/logout")
@@ -58,13 +59,13 @@ def login():
 def logout():
     logout_user()
     session.pop('username', None)
+    session.pop('admin', None)
     flash('Logged out successfully')
     return redirect(url_for('index'))
 
 @app.route('/pnm/<id>')
 @login_required
 def show_pnm_profile(id):
-	print Pnm.query.get(id).comments
 
 	return render_template('profile.html', pnm=Pnm.query.get(id))
 
