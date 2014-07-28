@@ -5,4 +5,7 @@ Major: {{pnm.major}} <br>
 Year: {{pnm.year}} <br>
 Hometown: {{pnm.hometown}} <br>
 Interests: {{pnm.interests}} <br>
+{% for c in pnm.comments %}
+Comment: {{c.text}} <br>
+{% endfor %}
 {% endblock %}

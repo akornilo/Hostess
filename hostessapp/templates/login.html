@@ -1,23 +1,22 @@
 {% extends "layout.html" %}
 {% block body %}
-  <form action="" method=post class="form-horizontal">
-    <h2>Signin to Hostess AXOXOXOX </h2>
-        <div class="controls">
-          <input type="text" id="username" name="username" class="input-xlarge"
-            placeholder="Enter Username" required>
-        </div>
+  <form action="" method=post class="form-signin" role="form">
 
-        <div class="controls">
-          <input type="password" id="password" name="password" class="input-xlarge"
+    <h2>Signin to Hostess App</h2>
+          <input type="text" id="username" name="username" class="form-control"
+            placeholder="Enter Username" required autofocused>
+
+          <input type="password" id="password" name="password" class="form-control"
             placeholder="Enter Password" required>
-        </div>
  
-        <div class="controls">
-          Remember Me: <input type="checkbox" id="remember" name="remember" class="input-xlarge">
-        </div>
+          <div class="checkbox">
+          <label>
+            <input type="checkbox" id="remember" name="remember">
+            Remember Me
+            
+          </label>
+          </div>
 
-        <div class="controls">
-          <button type="submit" class="btn btn-success">Signin</button>
-        </div>
+          <button type="submit" class="btn btn-lg btn-primary btn-block">Signin</button>
   </form>
 {% endblock %}

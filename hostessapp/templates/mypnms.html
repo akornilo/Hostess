@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if notfmr %}
+Oops, its not currently a night of fmr :(
+{% else %}
+	{% for p in pnms %}
+	<span>
+		<ul>
+			<li> {{p.name}} </li>
+			<li> {{p.hometown}} </li>
+			<li> {{p.major}} </li>
+			<li> {{p.interests}} </li>
+		</ul>
+	</span>
+	{% endfor %}
+<a href='/pnmform/{{party}}'>Review PNMS </a>
+
+{% endif %}
+
+
+{% endblock %}

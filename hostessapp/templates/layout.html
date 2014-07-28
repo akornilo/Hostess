@@ -1,17 +1,51 @@
 <!doctype html>
 <title>AXOXOX</title>
-<div class=page>
-   <div class=metanav>
-  {% if not session.username %}
-    <a href="{{ url_for('login') }}">log in</a>
-  {% else %}
-    <a href="{{ url_for('logout') }}">log out</a>
-  {% endif %}
-  {% with messages = get_flashed_messages() %}
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>  
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="/static/layout.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container-fluid">
+   <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <span class="navbar-brand">
+      HostessApp
+    </span>
+    </div>
+    <div class="collapse navbar-collapse" id="main nav">
+      <ul class="nav navbar-nav">
+        <li><a href="/"> HOME </a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>  {% if not session.username %}
+                <a href="{{ url_for('login') }}">Log In</a>
+              {% else %}
+                <a href="{{ url_for('logout') }}">Log Out</a>
+              {% endif %}</li>
+         </ul></div>
+
+    </nav>
+    {% with messages = get_flashed_messages() %}
     {% if messages %}
+    <div class="bs-callout bs-callout-danger">
     <h2 style="color:red;"> {{messages[(messages|length)-1]}} </h2>
+    </div>
     {% endif %}
   {% endwith %}
-  </div>
+
   {% block body %}{% endblock %}
 </div>
+</body>

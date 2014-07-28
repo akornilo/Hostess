@@ -7,6 +7,11 @@ class Sister(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
+    is_crib = db.Column(db.Boolean, default=False)
+    bump_group_id = db.Column(db.Integer, db.ForeignKey('bump_group.id'))
+    bump_group = db.relationship("BumpGroup", backref="sisters")
+
+
     def is_authenticated(self):
         return True
     def is_active(self):
@@ -15,36 +20,79 @@ class Sister(db.Model):
         return False 
     def get_id(self):
         return unicode(self.id)
+
     def __init__(self, username):
         self.username = username
 
     def __repr__(self):
         return str(self.username)
 
+    def is_crib(self):
+        return self.is_crib
 
-class PNM(db.Model):
+class BumpGroup(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(10), unique=True)
+    pnms = db.relationship("BumpToPnm",backref="bump_group")
+    
+    def __init__(self, name):
+            self.name = name
 
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(100))
-	major = db.Column(db.String(100))
-	hometown = db.Column(db.String(100))
-	year = db.Column(db.Integer)
-	interests = db.Column(db.String(500))
-	pros = db.Column(db.String(500))
-	cons = db.Column(db.String(500))
-	comments = db.Column(db.String(1000))
-	#recommended sisters via app
-	# sisters = db.Column(db.String(1000))
+class BumpToPnm(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    bump_id = db.Column(db.Integer, db.ForeignKey('bump_group.id'), primary_key=True)
+    pnm_id = db.Column(db.Integer, db.ForeignKey('pnm.id'), primary_key=True)
 
-	def __init__(self, name, major, hometown, year, interests):
-		self.name = name
-		self.major = major
-		self.hometown = hometown
-		self.year = year
-		self.interests = interests
+    night = db.Column(db.Integer)
+    party = db.Column(db.Integer)
 
-	def __repr__(self):
-		return str(self.name)
+    pnm = db.relationship("Pnm", backref="bump_assoc")
+
+    def __init__(self, night, party):
+        self.night = night
+        self.party = party
+
+class Pnm(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    major = db.Column(db.String(100))
+    hometown = db.Column(db.String(100))
+    year = db.Column(db.Integer)
+    interests = db.Column(db.String(500))
+    comments = db.relationship("Comment")
+    #recommended sisters via app
+    sisters = db.Column(db.String(500))
+
+    def __init__(self, name, major, hometown, year, interests):
+        self.name = name
+        self.major = major
+        self.hometown = hometown
+        self.year = year
+        self.interests = interests
+
+    def __repr__(self):
+        return str(self.name)
+
+class Comment(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    sister = db.Column(db.Integer, db.ForeignKey('sister.id'))
+    pnm = db.Column(db.Integer, db.ForeignKey('pnm.id'))
+    hidden = db.Column(db.Boolean, default=False)
+    text = db.Column(db.String(2000))
+    sisters = db.Column(db.String(500))
+
+    def __init__(self, comment, sisters, pnm, sister):
+        self.text = comment
+        self.pnm = pnm
+        self.sister = sister
+        self.sisters = sisters
+
+
+class Meta(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    night = db.Column(db.Integer, default=0)
 
 def setup():
-	db.create_all()
+    db.create_all()
