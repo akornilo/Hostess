@@ -117,7 +117,6 @@ def my_pnms(party):
 
 	night = session["night"]
 
-	night = 1
 	bg = current_user.bump_group
 
 	if night==0:
