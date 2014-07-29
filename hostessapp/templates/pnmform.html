@@ -1,13 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
-<script src="/static/pnmform.js"></script>
-
   <form action="" method=post class="form-horizontal" id="pnmform">
     <h2>Review a PNM</h2>
 
-          Name:
-          <div class="ui-widget form-inline">
-          <select form="pnmform" name="name" id="combobox" clas="form-control" required>
+          <label>Name:</label>
+          <div class="form-inline">
+          <select form="pnmform" name="name" class="form-control" required>
           {% for p in pnms %}
           <option>{{p.name}}</option>
           {% endfor %}
@@ -17,19 +15,19 @@
         <label> Interests: </label>
         <textarea rows="4" cols="50" name="interests" class="form-control" form="pnmform"></textarea><br>
         <label> General Comments: </label>
-        <textarea rows="4" cols="50" name="comments" class="form-control" form="pnmform"></textarea><br>
+        <textarea rows="4" cols="50" name="comments" class="form-control" form="pnmform" required></textarea><br>
         <label>Sisters to talk to: </label>
         <textarea rows="4" cols="50" name="sisters" class="form-control" form="pnmform"></textarea><br>
-
-        <div class="controls">
-          <button type="submit" class="btn btn-large btn-primary">Submit</button>
+        <div style="text-align:center">  
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
         </div>
   </form>
-  <a href='/mypnms/{{party}}' class=> See PNMs again </a> <br>
+  <div style="padding:5px;">
+  <a href='/mypnms/{{party}}' role="button" class="btn btn-primary"> Back to PNM list</a> 
   {% if last_party %}
-  Hurrah you finished the last part of the night night! <br>
-  <a href='/'> Return Home </a>
+  <a href='/' role="button" class="btn btn-default"> Return Home </a>
   {% else %}
-  <a href='/mypnms/{{party+1}}'>See next party pnms </a> 
+  <a href='/mypnms/{{party+1}}' role="button" class="btn btn-primary">Next Party</a> 
   {% endif %}
+</div>
 {% endblock %}

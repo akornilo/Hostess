@@ -1,45 +1,59 @@
 {% extends "layout.html" %}
 {% block body %}
+<div class="form-inline" style="padding-top:8px;">
 <form action="" method=post>
-<div class="form-inline">
 <label>Which night?</label>
- <select name=night onchange="this.form.submit()" class="form-control">
+ 	<select name=night onchange="this.form.submit()" class="form-control">
 	<option value="1" {% if session.assign_night == 1 %}
 	selected {% endif %}>1</option>
 	<option value="2"{% if session.assign_night == 2 %}
 	selected {% endif %}>2</option>
 	<option value="3"{% if session.assign_night == 3 %}
 	selected {% endif %}>3</option>
-</select>
+	</select>
+</form>
 </div>
-</form>
+
+<div>
+<h3>
+Assign PNMs to parties and bump groups!
+</h3>
 <form action="" method=post class="form-horizontal" id="pnmpartyform">
-<label>
-Assign PNMs to parties and bump group!
-</label>
+<table class="table table-condensed">
+<thead>
+<tr><th>Name</th><th>Party</th><th>Bump Group</th></tr>
+</thead>
+<tbody>
 {% for p in pnms %}
-	<div class="form-inline"
-	<label>{{p[0]}} </label>
-	<select name={{p[0]}}+party class="form-control">
-	<option value=0 {% if p[1] == 0 %}selected {% endif %}>Not Attending</option>
-	{% for r in parties %}
-	<option value={{r}}{% if p[1] == r %} selected {% endif %}>{{r}}</option>
-	{% endfor %}
-	</select>
-
-	<select name={{p[0]}}+bump class="form-control">
-	{% for b in bumps %}
-	<option value={{b}} {% if p[2] == b %} selected {% endif %}>{{b}}</option>
-	{% endfor %}
-	</select>
+	<tr>
+	<div class="form-inline">
+	<td>
+		{{p[0]}}  
+	</td>
+	<td>
+		<select name={{p[0]}}+party class="form-control">
+		<option value=0 {% if p[1] == 0 %}selected {% endif %}>Not Attending</option>
+		{% for r in parties %}
+		<option value={{r}}{% if p[1] == r %} selected {% endif %}>{{r}}</option>
+		{% endfor %}
+		</select>
+	</td>	
+	<td>
+		<select name={{p[0]}}+bump class="form-control">
+		{% for b in bumps %}
+		<option value={{b}} {% if p[2] == b %} selected {% endif %}>{{b}}</option>
+		{% endfor %}
+		</select>
+	</td>
 	</div>
-
+</tr>
 {% endfor %}
-		
+</tbody>
+</table>
 <div class="controls">
-          <button type="submit" class="btn">Submit</button>
+          <button type="submit" class="btn btn-danger">Save</button>
 	</div>
 </form>
 
-
+</div>
 {% endblock %}

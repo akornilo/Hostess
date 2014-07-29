@@ -86,8 +86,6 @@ def pnm_form(party):
 			
 		ans = request.form
 
-		print ans.items()
-
 		pnm = Pnm.query.filter_by(name=ans["name"]).first()
 
 		sis = current_user.username
@@ -96,16 +94,20 @@ def pnm_form(party):
 
 		# Add to sisters comments
 
-		pnm.interests = pnm.interests+", "+ans["interests"]
+		if pnm.interests_sis:
+			pnm.interests_sis = pnm.interests_sis+", "+ans["interests"]
+		else:
+			pnm.interests_sis = ans["interests"]
 
 		db.session.add(c)
 		db.session.commit()
 
-	print current_pnms
+	current_names = [x.name for x in current_pnms]
 
-	all_pnms = filter(lambda x:x.name not in current_pnms, Pnm.query.all())
+	all_pnms = filter(lambda x: x.name not in current_names, Pnm.query.all())
 
 	pnms = current_pnms + all_pnms
+
 	if "night" in session:
 		last_round = (int(party) == num_parties[session["night"]])
 	else:
@@ -194,15 +196,17 @@ def assign_pnms():
 		bump = BumpGroup.query.filter_by(name=bg).first()
 
 		if party == 0:
-			print p
 
 			b = BumpToPnm.query.filter_by(pnm_id=pnm.id).filter_by(bump_id=bump.id).filter_by(night=night).first()
 			if b:
 				db.session.delete(b)
 		else:
-			b = BumpToPnm.query.filter_by(pnm_id=pnm.id).filter_by(bump_id=bump.id).filter_by(night=night).first()
-			if not b:
-				b = BumpToPnm(night, party)
+			b = BumpToPnm.query.filter_by(pnm_id=pnm.id).filter_by(night=night).first()
+
+			if b:
+				db.session.delete(b)
+
+			b = BumpToPnm(night, party)
 			
 			b.pnm = pnm
 			b.party = party

@@ -1,15 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
 {% if notfmr %}
-Oops, its not currently a night of fmr :(
+<h1> Oops, its not currently a night of fmr :( </h1>
 {% else %}
+<div> <h2 style="text-align:center;"> <span class="label label-danger"> Party {{party}} </span></h2> </div>
 	{% for p in pnms %}
 	<div>
 		<ul class="list-group">
-		<li class="list-group-item top"><b>Name:</b> {{p.name}}</li>
+		<li class="list-group-item active"><b>Name:</b> {{p.name}}</li>
 		<li class="list-group-item"><b>Hometown:</b> {{p.hometown}}</li>
 		<li class="list-group-item"><b>Major:</b> {{p.major}}</li>
-		<li class="list-group-item"><b>Interests:</b> {{p.interests}}</li>
+		<li class="list-group-item"><b>Interests (from PNM):</b> {{p.interests}}</li>
+		<li class="list-group-item"><b>Interests (from sis):</b> {{p.interests_sis}}</li>
 		<li class="list-group-item"><b>Comments:</b> 
 			<ul>
 			{% for c in p.comments %}
@@ -20,8 +22,9 @@ Oops, its not currently a night of fmr :(
 	</ul>
 	</div>
 	{% endfor %}
-<a href='/pnmform/{{party}}'>Review PNMS </a>
-
+<div style="text-align:center;">
+	<a href="/pnmform/{{party}}" role="button" class="btn btn-primary btn-large">Review PNMs</a>
+</div>
 {% endif %}
 
 {% endblock %}

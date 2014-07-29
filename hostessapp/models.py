@@ -57,6 +57,7 @@ class Pnm(db.Model):
     hometown = db.Column(db.String(100))
     year = db.Column(db.Integer)
     interests = db.Column(db.String(500))
+    interests_sis = db.Column(db.String(500))
     comments = db.relationship("Comment")
     #recommended sisters via app
     sisters = db.Column(db.String(500))

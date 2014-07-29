@@ -1,28 +1,32 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1 style="text-align:center;">WELCOME {{name}}! Its night {{session.night}}. </h1>
+<div class="jumbotron">
+<h2 style="text-align:left;">Hey, {{name}}!</h2>
+<p> Its night {{session.night}}.</p>
+</div>
 {% if session.admin %}
-<h2>Admin Actions</h2>
-
+<ul class="list-group" style="padding:5px;">
+<li class="list-group-item active"><h2>Admin Actions</h2></li>
+<li class="list-group-item">
 <form action="" method=post role="form" class="form-inline" id="pnmform">
-<label>Set Night:</label>
+Set Night:
  <select class="form-control" name=night>
  	<option value="0">Not FMR</option>
 	<option value="1">1</option>
 	<option value="2">2</option>
 	<option value="3">3</option>
 </select>
-<button type="submit" class="btn">Submit</button>
+<button type="submit" class="btn btn-danger">Submit</button>
  </form>
- <div>
- <a href="/allpnms">See All PNMS </a>
-</div>
-<div>
+ </li>
+ <li class="list-group-item">
+ <a href="/allpnms">See all PNM comments </a>
+</li>
+<li class="list-group-item">
 <a href="/assignpnms"> Assign PNMs to Bump Groups </a>
-</div>
+</li></ul>
 {% endif %}
-<h2>Sister Actions</h2>	
 <div>
-<a href="/mypnms/1">Review PNMS!</a>
+<a href="/mypnms/1" role="button" class="btn btn-primary btn-large btn-block">See my PNMs</a>
 </div>
 {% endblock %}
