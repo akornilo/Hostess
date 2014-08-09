@@ -76,19 +76,26 @@ class Comment(db.Model):
     sister = db.Column(db.Integer, db.ForeignKey('sister.id'))
     sister_name = db.Column(db.String(30))
     pnm = db.Column(db.Integer, db.ForeignKey('pnm.id'))
+    night = db.Column(db.Integer)
+    party = db.Column(db.Integer)
+
+
     hidden = db.Column(db.Boolean, default=False)
     text = db.Column(db.String(1000))
+    # to talk to - not making comment
     sisters = db.Column(db.String(200))
     interests = db.Column(db.String(200))
 
 
-    def __init__(self, comment, interests, sisters, pnm, sister, name):
+    def __init__(self, comment, interests, sisters, pnm, sister_id, name, night, party):
         self.text = comment
         self.pnm = pnm
-        self.sister = sister
+        self.sister = sister_id
         self.sisters = sisters
         self.sister_name = name
         self.interests = interests
+        self.night = night
+        self.party = party
 
 
 class Meta(db.Model):

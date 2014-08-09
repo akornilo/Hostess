@@ -9,9 +9,11 @@
 {% for p in pnms %}
 	{% for c in p.comments %}
 	<tr>
-	<td> {{p.name}} </td>
-	<td> {{c.sister_name}} </td>
-	<td> {{c.text}} </td>
+	<td> {{p.name}}</td>
+	<td> {{c.sister_name}}</td>
+	<td> {{c.night}}</td>
+	<td> {{c.party}}</td>
+	<td> {{c.text}}</td>
 	<td> {{c.sisters}}</td>
 	</tr>
 	{% endfor %}
