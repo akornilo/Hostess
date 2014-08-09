@@ -90,14 +90,7 @@ def pnm_form(party):
 
 		sis = current_user.username
 
-		c = Comment(ans["comments"], ans["sisters"], pnm.id, current_user.id, sis)
-
-		# Add to sisters comments
-
-		if pnm.interests_sis:
-			pnm.interests_sis = pnm.interests_sis+", "+ans["interests"]
-		else:
-			pnm.interests_sis = ans["interests"]
+		c = Comment(ans["comments"], ans["sisters"], ans["interests"], pnm.id, current_user.id, sis)
 
 		db.session.add(c)
 		db.session.commit()

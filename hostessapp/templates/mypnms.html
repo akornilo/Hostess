@@ -11,7 +11,12 @@
 		<li class="list-group-item"><b>Hometown:</b> {{p.hometown}}</li>
 		<li class="list-group-item"><b>Major:</b> {{p.major}}</li>
 		<li class="list-group-item"><b>Interests (from PNM):</b> {{p.interests}}</li>
-		<li class="list-group-item"><b>Interests (from sis):</b> {{p.interests_sis}}</li>
+		<li class="list-group-item"><b>Interests (from sis):</b> 			
+			<ul>
+			{% for c in p.comments %}
+			<li> {{c.interests}} </li>
+			{% endfor %}
+			</ul></li>
 		<li class="list-group-item"><b>Comments:</b> 
 			<ul>
 			{% for c in p.comments %}

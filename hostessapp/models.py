@@ -57,10 +57,8 @@ class Pnm(db.Model):
     hometown = db.Column(db.String(100))
     year = db.Column(db.Integer)
     interests = db.Column(db.String(500))
-    interests_sis = db.Column(db.String(500))
     comments = db.relationship("Comment")
-    #recommended sisters via app
-    sisters = db.Column(db.String(500))
+
 
     def __init__(self, name, major, hometown, year, interests):
         self.name = name
@@ -79,15 +77,18 @@ class Comment(db.Model):
     sister_name = db.Column(db.String(30))
     pnm = db.Column(db.Integer, db.ForeignKey('pnm.id'))
     hidden = db.Column(db.Boolean, default=False)
-    text = db.Column(db.String(2000))
-    sisters = db.Column(db.String(500))
+    text = db.Column(db.String(1000))
+    sisters = db.Column(db.String(200))
+    interests = db.Column(db.String(200))
 
-    def __init__(self, comment, sisters, pnm, sister, name):
+
+    def __init__(self, comment, interests, sisters, pnm, sister, name):
         self.text = comment
         self.pnm = pnm
         self.sister = sister
         self.sisters = sisters
         self.sister_name = name
+        self.interests = interests
 
 
 class Meta(db.Model):
