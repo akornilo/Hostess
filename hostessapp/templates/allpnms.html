@@ -3,7 +3,8 @@
 <table class="table">
 <thead>
 <tr>
-<th>PNM</th><th>Sister</th><th>Comments</th><th>Sisters to talk to</th>
+<th>PNM</th><th>Sister</th><th>Night</th><th>Party</th>
+<th>Comments</th><th>Sisters added</th><th>Sisters to talk to</th>
 </tr>	
 </thead>
 {% for p in pnms %}
@@ -14,6 +15,7 @@
 	<td> {{c.night}}</td>
 	<td> {{c.party}}</td>
 	<td> {{c.text}}</td>
+	<td> {{c.interests}} </td>
 	<td> {{c.sisters}}</td>
 	</tr>
 	{% endfor %}
