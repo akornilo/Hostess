@@ -3,40 +3,49 @@
  <link rel="stylesheet" href="/static/allpnms.css">
 {% endblock %}
 {% block body %}
-<table class="table tablesorter" id="pnmTable">
-<thead>
-<tr>
-<th>PNM</th><th>Sister</th><th>Night</th><th>Party</th>
-<th>Comments</th><th>Sisters added</th><th>Sisters to talk to</th>
-</tr>	
-</thead>
-<tbody>
-{% for p in pnms %}
-	{% for c in p.comments %}
-	<tr>
-	<td> {{p.name}}</td>
-	<td> {{c.sister_name}}</td>
-	<td> {{c.night}}</td>
-	<td> {{c.party}}</td>
-	<td> {{c.text}}</td>
-	<td> {{c.interests}} </td>
-	<td> {{c.sisters}}</td>
-	</tr>
+<div id="pnms">
+	<input class="search form-control" placeholder="Search" />
+	<table class="table" id="pnmTable">
+	<thead>
+		<tr>
+		<th class="sort" data-sort="name">PNM</th>
+		<th class="sort" data-sort="sister_name">Sister</th>
+		<th class="sort" data-sort="night">Night</th>
+		<th class="sort" data-sort="party">Party</th>
+		<th class="sort" data-sort="text">Comments</th>
+		<th class="sort" data-sort="interests">Sisters added</th>
+		<th class="sort" data-sort="sisters">Sisters to talk to</th>
+		</tr>	
+	</thead>
+	<tbody class="list">
+	{% for p in pnms %}
+		{% for c in p.comments %}
+		<tr>
+		<td class="name"> {{p.name}}</td>
+		<td class="sister_name"> {{c.sister_name}}</td>
+		<td class="night"> {{c.night}}</td>
+		<td class="party"> {{c.party}}</td>
+		<td class="text"> {{c.text}}</td>
+		<td class="interests"> {{c.interests}} </td>
+		<td class="sisters"> {{c.sisters}}</td>
+		</tr>
+		{% endfor %}
 	{% endfor %}
-{% endfor %}
-</tbody>
-</table>
-
-<script type="text/javascript" src="/static/jquery.tablesorter.min.js"></script> 
+	</tbody>
+	</table>
+</div>
+<script type="text/javascript" src="/static/list.min.js"></script>
 
 <script>
 	$(document).ready(function(){
 		$(function(){
-			$("#pnmTable").tablesorter({
-				headerTemplate : '{content}{icon}',
-				widgets : ["columns"]
-			});
+			var options = {
+  				valueNames: ['name', 'sister_name', 'night', 'party', 'text', 'interests', 'sisters']
+			};
+			var pnmTable = new List('pnms', options)
+
 		});
 	});
+
 </script>
 {% endblock %}

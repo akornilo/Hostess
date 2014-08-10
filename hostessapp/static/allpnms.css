@@ -1,17 +1,23 @@
 
-table.tablesorter thead tr .header {
+table thead th{
   background-image: url(bg.gif);
   background-repeat: no-repeat;
   background-position: center right;
   cursor: pointer;
 }
-table.tablesorter thead tr .headerSortUp {
+table thead th.desc {
   background-image: url(asc.gif);
   background-repeat: no-repeat;
   background-position: center right;
 }
-table.tablesorter thead tr .headerSortDown {
+table thead th.asc {
   background-image: url(desc.gif);
   background-repeat: no-repeat;
   background-position: center right;
+}
+#pnms{
+  margin:5px;
+}
+.search {
+  padding:5px;
 }
