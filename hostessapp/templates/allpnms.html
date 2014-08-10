@@ -1,12 +1,16 @@
 {% extends "layout.html" %}
+{% block head %}
+ <link rel="stylesheet" href="/static/allpnms.css">
+{% endblock %}
 {% block body %}
-<table class="table">
+<table class="table tablesorter" id="pnmTable">
 <thead>
 <tr>
 <th>PNM</th><th>Sister</th><th>Night</th><th>Party</th>
 <th>Comments</th><th>Sisters added</th><th>Sisters to talk to</th>
 </tr>	
 </thead>
+<tbody>
 {% for p in pnms %}
 	{% for c in p.comments %}
 	<tr>
@@ -20,5 +24,19 @@
 	</tr>
 	{% endfor %}
 {% endfor %}
+</tbody>
 </table>
+
+<script type="text/javascript" src="/static/jquery.tablesorter.min.js"></script> 
+
+<script>
+	$(document).ready(function(){
+		$(function(){
+			$("#pnmTable").tablesorter({
+				headerTemplate : '{content}{icon}',
+				widgets : ["columns"]
+			});
+		});
+	});
+</script>
 {% endblock %}

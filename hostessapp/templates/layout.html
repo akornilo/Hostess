@@ -1,18 +1,25 @@
 <!doctype html>
 <title>AXOXOX</title>
 <head>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="/static/jquery-1.11.1.min.js"></script> 
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <!-- my css style -->
     <link rel="stylesheet" href="/static/layout.css">
+
+    <!-- table sorter code for all pnms page -->
+    <script type="text/javascript" src="/static/jquery.tablesorter.min.js"></script> 
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    {% block head %}{% endblock %}
 </head>
 <body>
 
@@ -42,8 +49,6 @@
       </div>
     </div>
 
-
-
     <div class="container-fluid body">
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -55,8 +60,4 @@
 
   {% block body %}{% endblock %}
 </div>
-
- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>  
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
