@@ -1,1 +1,1 @@
-web: gunicorn hostessapp:app  --log-file=-
+web: gunicorn hostessapp:app  --log-file -
