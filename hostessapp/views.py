@@ -90,7 +90,7 @@ def pnm_form(party):
 
 		sis = current_user.username
 
-		c = Comment(ans["comments"], ans["sisters"], ans["interests"], pnm.id, current_user.id, 
+		c = Comment(ans["comments"], ans["interests"], ans["sisters"], pnm.id, current_user.id, 
 						sis, session["night"], party)
 
 		db.session.add(c)

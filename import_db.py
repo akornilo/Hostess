@@ -4,7 +4,6 @@ db = models.db
 db.drop_all()
 db.create_all()
 
-
 a = models.BumpGroup("A")
 b = models.BumpGroup("B")
 c = models.BumpGroup("C")
@@ -13,45 +12,71 @@ db.session.add(a)
 db.session.add(b)
 db.session.add(c)
 
-anna = models.Sister("Anna")
-elsa = models.Sister("Elsa")
-mary = models.Sister("Mary")
-kate = models.Sister("Ashley")
-emma = models.Sister("Emma")
-dawn = models.Sister("Dawn")
-alice = models.Sister("Alice")
-amelia = models.Sister("Amelia")
+admin = models.Sister("admin", None)
 
-anna.is_crib = True
+admin.is_crib = True
+db.session.add(admin)
 
-anna.bump_group = a
-elsa.bump_group = a
-mary.bump_group = a
-kate.bump_group = b
-emma.bump_group = b
-dawn.bump_group = b
-alice.bump_group = c
-amelia.bump_group = c
 
-db.session.add(anna)
-db.session.add(elsa)
-db.session.add(mary)
-db.session.add(kate)
-db.session.add(emma)
-db.session.add(dawn)
-db.session.add(alice)
-db.session.add(amelia)
+db.session.add(models.Sister("seanders", a))
+db.session.add(models.Sister("ccarmstr", a))
+db.session.add(models.Sister("kbeitten", a))
+db.session.add(models.Sister("nrberman", c))
+db.session.add(models.Sister("gbonker", a))
+db.session.add(models.Sister("kborst", a))
+db.session.add(models.Sister("lecarrol", a))
+db.session.add(models.Sister("mtchang", a))
+db.session.add(models.Sister("agcohen", b))
+db.session.add(models.Sister("sthart", b))
+db.session.add(models.Sister("bhunttob", b))
+db.session.add(models.Sister("grjones", b))
+db.session.add(models.Sister("srkane", b))
+db.session.add(models.Sister("qkang", b))
+db.session.add(models.Sister("akornilo", b))
+db.session.add(models.Sister("skronenf", a))
+db.session.add(models.Sister("amylee", b))
+db.session.add(models.Sister("alemus", b))
+db.session.add(models.Sister("weikunl", b))
+db.session.add(models.Sister("mtmathew", b))
+db.session.add(models.Sister("lmcclary", a))
+db.session.add(models.Sister("hmostert", c))
+db.session.add(models.Sister("anarodit", b))
+db.session.add(models.Sister("cvnguyen", b))
+db.session.add(models.Sister("spatter1", c))
+db.session.add(models.Sister("apeterso", a))
+db.session.add(models.Sister("bpritche", c))
+db.session.add(models.Sister("anyar", c))
+db.session.add(models.Sister("carogers", c))
+db.session.add(models.Sister("lhruan", c))
+db.session.add(models.Sister("qser", c))
+db.session.add(models.Sister("wanxuans", a))
+db.session.add(models.Sister("vsivakum", a))
+db.session.add(models.Sister("mnstephe", c))
+db.session.add(models.Sister("smw", c))
+db.session.add(models.Sister("cwestcot", b))
+db.session.add(models.Sister("aswilson", c))
+db.session.add(models.Sister("lwines", b))
+db.session.add(models.Sister("shix", c))
+db.session.add(models.Sister("Jingqiy", b))
+db.session.add(models.Sister("afzhang", c))
+db.session.add(models.Sister("xinyunz", c))
+db.session.add(models.Sister("szucker", c))
+
 
 #pnms
 
-i = models.Pnm("Irma", "CS", "atown", 1, "writing, ponies")
-j = models.Pnm("Allysa", "Bio", "btown", 2, "all kinds of dance")
-k = models.Pnm("Lydia", "Chemistry", "ctown", 1, "stagecraft, singing")
-l = models.Pnm("Jamie", "Philosophy", "dtown", 1, "veganism, acro")
-m = models.Pnm("Vera", "History", "etown", 2, "ren fairs, crafts of all kinds")
-n = models.Pnm("Liz", "Mech-e", "dtown", 1, "hip-hop")
-o = models.Pnm("Michelle", "EE", "etown", 2, "robotics")
-p = models.Pnm("Taylor", "Physics", "atown", 1, "art history")
+i = models.Pnm("Irma", "CS", "Pittsburgh", 1, "writing, horseback riding")
+j = models.Pnm("Allysa", "Biology", "San Francisco", 2, "all kinds of dance")
+k = models.Pnm("Lydia", "Chemistry", "Los Angeles", 1, "stagecraft, singing")
+l = models.Pnm("Jamie", "Philosophy", "Washington, DC", 1, "veganism, acrobatics")
+m = models.Pnm("Vera", "History", "Chicago", 2, "ren fairs, crafts of all kinds")
+n = models.Pnm("Liz", "Mech-e", "New York", 1, "hip-hop")
+o = models.Pnm("Michelle", "EE", "Austin", 2, "robotics")
+p = models.Pnm("Taylor", "Physics", "Dallas", 1, "art history")
+q = models.Pnm("Ella", "Biology", "Austin", 2, "sustainable farming")
+r = models.Pnm("Elsa", "Biomedical Eng", "Dallas", 1, "gender studies, science history")
+s = models.Pnm("Melly", "Linguistics", "Austin", 2, "yoga, meditation")
+t = models.Pnm("Mandy", "English", "Dallas", 1, "hiking, ecotourism")
 
 db.session.add(i)
 db.session.add(j)
@@ -61,6 +86,10 @@ db.session.add(m)
 db.session.add(n)
 db.session.add(o)
 db.session.add(p)
+db.session.add(q)
+db.session.add(r)
+db.session.add(s)
+db.session.add(t)
 
 db.session.add(models.Meta())
 

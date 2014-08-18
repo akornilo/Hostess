@@ -21,8 +21,10 @@ class Sister(db.Model):
     def get_id(self):
         return unicode(self.id)
 
-    def __init__(self, username):
+    def __init__(self, username, bump_group):
         self.username = username
+        if bump_group:
+            self.bump_group = bump_group
 
     def __repr__(self):
         return str(self.username)
