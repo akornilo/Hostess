@@ -1,1 +1,1 @@
-web: gunicorn hostessapp:app --workers $WEB_CONCURRENCY --worker-class gevent --log-file=-
+web: gunicorn hostessapp:app  --log-file -
