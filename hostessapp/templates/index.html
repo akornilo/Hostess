@@ -7,24 +7,30 @@
 {% if session.admin %}
 <ul class="list-group" style="padding:5px;">
 <li class="list-group-item active"><h2>Admin Actions</h2></li>
-<li class="list-group-item">
-<form action="" method=post role="form" class="form-inline" id="pnmform">
-Set Night:
- <select class="form-control" name=night>
- 	<option value="0">Not FMR</option>
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-</select>
-<button type="submit" class="btn btn-danger">Submit</button>
- </form>
- </li>
- <li class="list-group-item">
- <a href="/allpnms">See all PNM comments </a>
-</li>
-<li class="list-group-item">
-<a href="/assignpnms"> Assign PNMs to Bump Groups </a>
-</li></ul>
+	<li class="list-group-item">
+		<form action="" method=post role="form" class="form-inline" id="pnmform">
+		Set Night:
+		 <select class="form-control" name=night>
+		 	<option value="0">Not FMR</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+		</select>
+		<button type="submit" class="btn btn-danger">Submit</button>
+		 </form>
+	 </li>
+	<li class="list-group-item">
+	 <a href="/allpnms">See all PNM comments </a>
+	</li>
+	<li class="list-group-item">
+		<a href="/assignpnms"> Assign PNMs to Bump Groups </a>
+	</li>
+	</li>
+	<li class="list-group-item">
+		<a href="/assignsisters"> Assign Sisters to Bump Groups </a>
+	</li>
+
+</ul>
 {% endif %}
 <div>
 <a href="/mypnms/1" role="button" class="btn btn-primary btn-large btn-block">See my PNMs</a>
