@@ -14,13 +14,17 @@
 		<li class="list-group-item"><b>Interests (from sis):</b> 			
 			<ul>
 			{% for c in p.comments %}
-			<li> {{c.interests}} </li>
+				{% if c.interests %}
+				<li> {{c.interests}} -- {{c.sister_name}} </li>
+				{% endif %}
 			{% endfor %}
 			</ul></li>
 		<li class="list-group-item"><b>Comments:</b> 
 			<ul>
 			{% for c in p.comments %}
-			<li> {{c.text}} </li>
+				{% if c.text %}
+				<li> {{c.text}} -- {{c.sister_name}}</li>
+				{% endif %}
 			{% endfor %}
 			</ul>
 		</li>
@@ -28,7 +32,15 @@
 	</div>
 	{% endfor %}
 <div style="text-align:center;">
+	<div style="padding:5px;">
 	<a href="/pnmform/{{party}}" role="button" class="btn btn-primary btn-large">Review PNMs</a>
+	</div>
+
+	{% if party > 1 %}
+		<div style="padding:5px;">
+		<a href='/pnmform/{{party-1}}' role="button" class="btn btn-warning	">Previous Party</a> 
+		</div>
+	{% endif %}
 </div>
 {% endif %}
 

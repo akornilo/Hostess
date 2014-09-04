@@ -222,3 +222,35 @@ def assign_pnms():
 			assigns+=[[p.name, match.party, match.bump_group.name]]
 
 	return render_template("assignpnms.html", pnms=assigns, bumps=bumps, parties=parties)
+
+@app.route('/assignsisters', methods=['GET', 'POST'])
+@login_required
+def assign_sisters():
+
+	bumps = [x.name for x in BumpGroup.query.all()]
+
+	if request.method == 'POST':
+		print request.form
+		for val in request.form.items():
+ 			username, bump = val
+			sister = Sister.query.filter_by(username=username).first()
+			bump_group = BumpGroup.query.filter_by(name=bump).first()
+			print bump_group, bump
+			sister.bump_group = bump_group
+		db.session.commit()
+
+	sisters = Sister.query.all()
+	assigns = []
+	for s in sisters:
+		if not s.bump_group:
+			assigns+=[[s.username,"A"]]
+		else:
+			assigns+=[[s.username, s.bump_group.name]]
+
+	return render_template("assignsisters.html", sisters=assigns, bumps=bumps)
+
+
+
+
+	
+

@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   <form action="" method=post class="form-horizontal" id="pnmform">
+    <div> <h2 style="text-align:center;"> <span class="label label-danger"> Party {{party}} </span></h2> </div>
     <h2>Review a PNM</h2>
 
           <label>Name:</label>
@@ -25,9 +26,13 @@
   <div style="padding:5px;">
   <a href='/mypnms/{{party}}' role="button" class="btn btn-primary"> Back to PNM list</a> 
   {% if last_party %}
-  <a href='/' role="button" class="btn btn-default"> Return Home </a>
+    <div style="padding:5px;">
+    <a href='/' role="button" class="btn btn-default"> Return Home </a>
+    </div>
   {% else %}
-  <a href='/mypnms/{{party+1}}' role="button" class="btn btn-primary">Next Party</a> 
+    <div style="padding:5px;">
+    <a href='/mypnms/{{party+1}}' role="button" class="btn btn-warning">Next Party</a>
+    </div> 
   {% endif %}
 </div>
 {% endblock %}
