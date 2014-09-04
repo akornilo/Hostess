@@ -127,15 +127,13 @@ def my_pnms(party):
 		party = int(party)
 
 		pnms = []
-
-		for x in bg.pnms:
-			if x.party == party and x.night==night:
-				p = x.pnm
-				pnms.append(x.pnm)
+		if bg:
+			for x in bg.pnms:
+				if x.party == party and x.night==night:
+					p = x.pnm
+					pnms.append(x.pnm)
 
 		current_pnms = pnms
-
-		print current_pnms
 
 		return render_template("mypnms.html", notfmr = False, pnms=pnms, party=party)
 
